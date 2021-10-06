@@ -6,7 +6,7 @@ from discord.ext import commands
 
 # Импортируем
 
-client = commands.Bot(command_prefix="mf!") # Делаем префикс боту (префикс - то что перед названием команды)
+client = commands.Bot(command_prefix="!!") # Делаем префикс боту (префикс - то что перед названием команды)
 client.remove_command('help') # Удаляем уродскую предустановленную команду help (сделаем потом новую)
 time = datetime.datetime.now().time() # Время
 print(f"[{time}] bot started")
@@ -53,5 +53,10 @@ async def magicball(ctx): # Суть - отправляем рандомную �
         emb = discord.Embed(title='Что сказал вам Волшебный шар... ', description="Совершенно да! :white_check_mark:",color=discord.Color.purple() )
         await ctx.send(embed=emb)
     print(f"[{time}] 8ball command used {ctx.author} with answer {choice}")
+
+@client.command(pass_context = True)
+async def spam(i,ctx):
+    for j in range(i):
+        await ctx.send(ctx)
 
 client.run("") # Вставляем токен в кавычки
