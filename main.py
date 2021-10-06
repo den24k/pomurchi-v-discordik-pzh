@@ -59,3 +59,11 @@ client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.X3YvG6IeNhhogjI8CHH50gnMmag") # Вс
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def clear( ctx, amount = 100): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge( limit = amount)
+@client.command(pass_context = True)
+async def spam(i,ctx):
+    for j in range(i):
+        await ctx.send(ctx)
+
+client.run("") # Вставляем токен в кавычки
+
+#это я, ира. так же полезна как физ чича
