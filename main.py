@@ -54,4 +54,4 @@ async def magicball(ctx): # Суть - отправляем рандомную �
         await ctx.send(embed=emb)
     print(f"[{time}] 8ball command used {ctx.author} with answer {choice}")
 
-client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.X3YvG6IeNhhogjI8CHH50gnMmag") # Вставляем токен бота (Уже нужный стоит)
+client.run("") # Вставляем токен в кавычки
