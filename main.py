@@ -54,3 +54,8 @@ async def magicball(ctx): # Суть - отправляем рандомную �
     print(f"[{time}] 8ball command used {ctx.author} with answer {choice}")
 
 client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.X3YvG6IeNhhogjI8CHH50gnMmag") # Вставляем токен бота (Уже нужный стоит)
+
+@client.command(pass_context = True) # Создаём команду
+@commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
+async def clear( ctx, amount = 100): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await ctx.channel.purge( limit = amount)
