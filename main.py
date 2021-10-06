@@ -5,13 +5,13 @@ from discord.ext import commands
 
 # Импортируем
 
-client = commands.Bot(command_prefix="mf!") # Делаем префикс боту (префикс - то что перед названием команды)
+client = commands.Bot(command_prefix="!!") # Делаем префикс боту (префикс - то что перед названием команды)
 client.remove_command('help') # Удаляем уродскую предустановленную команду help (сделаем потом новую)
 time = datetime.datetime.now().time() # Время
 print(f"[{time}] bot started")
 time = datetime.datetime.now().time() # Время
 print(f"[{time}] bot runs at",client.guilds,"guilds")
-helpdata = open("help.txt",mode='r').read() # В файл закидываем то что будет отправляться при команде help
+helpdata = "помогите" #open("help.txt",mode='r').read() # В файл закидываем то что будет отправляться при команде help
 
 
 @client.command(pass_context = True) # Создаём команду
@@ -53,17 +53,16 @@ async def magicball(ctx): # Суть - отправляем рандомную �
         await ctx.send(embed=emb)
     print(f"[{time}] 8ball command used {ctx.author} with answer {choice}")
 
-client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.X3YvG6IeNhhogjI8CHH50gnMmag") # Вставляем токен бота (Уже нужный стоит)
 
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def clear( ctx, amount = 100): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge( limit = amount)
 @client.command(pass_context = True)
-async def spam(i,ctx):
-    for j in range(i):
-        await ctx.send(ctx)
+async def spam(ctx,skolko,bukvi):
+    for mogus in range(int(skolko)):
+        await ctx.send(bukvi)
 
-client.run("") # Вставляем токен в кавычки
+client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.Ia_4l1P7heK_Wlz_tF9kQAaRX1Q") # Вставляем токен в кавычки
 
 #это я, ира. так же полезна как физ чича
