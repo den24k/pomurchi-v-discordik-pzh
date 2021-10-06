@@ -2,6 +2,7 @@ import discord
 import random
 import datetime
 from discord.ext import commands
+from mytalkingtoken import token
 
 # Импортируем
 
@@ -63,6 +64,6 @@ async def spam(ctx,skolko,bukvi):
     for mogus in range(int(skolko)):
         await ctx.send(bukvi)
 
-client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.Ia_4l1P7heK_Wlz_tF9kQAaRX1Q") # Вставляем токен в кавычки
+client.run(token) # Вставляем токен в кавычки
 
 #это я, ира. так же полезна как физ чича
