@@ -74,7 +74,7 @@ async def kick (ctx, member: discord.Member, *, reason = None): # Создаём
     await member.kick(reason = reason)
     await ctx.send( f'кикнут{member.mention}' )
 
-lient.run(token) # Вставляем токен в кавычки
+client.run(token) # Вставляем токен в кавычки
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def ban (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
@@ -82,6 +82,21 @@ async def ban (ctx, member: discord.Member, *, reason = None): # Создаём 
 
     await member.ban(reason = reason)
     await ctx.send( f'забанен{member.mention}' )
+
+client.run(token) # Вставляем токен в кавычки
+@client.command(pass_context = True) # Создаём команду
+@commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
+async def unban (ctx, *, member): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await ctx.channel.purge(limit = 1)
+
+    banned_users = await ctx.guild.bans()
+    for ban_entry in banned_users:
+        user = ban_entry.user
+
+        await ctx.guild.unban( user )
+        await ctx.send( f'разбанен{ user.mention }')
+
+        return
 
 client.run("") # Вставляем токен в кавычки
 
