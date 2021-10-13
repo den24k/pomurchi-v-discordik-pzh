@@ -54,6 +54,7 @@ async def magicball(ctx): # Суть - отправляем рандомную �
         await ctx.send(embed=emb)
     print(f"[{time}] 8ball command used {ctx.author} with answer {choice}")
 
+client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.X3YvG6IeNhhogjI8CHH50gnMmag") # Вставляем токен бота (Уже нужный стоит)
 
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
@@ -65,5 +66,23 @@ async def spam(ctx,skolko,bukvi):
         await ctx.send(bukvi)
 
 client.run(token) # Вставляем токен в кавычки
+@client.command(pass_context = True) # Создаём команду
+@commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
+async def kick (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await ctx.channel.purge(limit = 1)
+
+    await member.kick(reason = reason)
+    await ctx.send( f'кикнут{member.mention}' )
+
+lient.run(token) # Вставляем токен в кавычки
+@client.command(pass_context = True) # Создаём команду
+@commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
+async def ban (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await ctx.channel.purge(limit = 1)
+
+    await member.ban(reason = reason)
+    await ctx.send( f'забанен{member.mention}' )
+
+client.run("") # Вставляем токен в кавычки
 
 #это я, ира. так же полезна как физ чича
