@@ -116,6 +116,6 @@ async def send_m(ctx, member: discord.member):  # Создаём функцию 
     await member.send(f'{member.name}, привет от {ctx.author.name}')
     return
 
-client.run("token") # Вставляем токен в кавычки
+client.run(f"{token}") # Вставляем токен в кавычки
 
 #это я, ира. так же полезна как физ чича
