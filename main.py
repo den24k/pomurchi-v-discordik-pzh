@@ -76,6 +76,7 @@ async def kick (ctx, member: discord.Member, *, reason = None): # Создаём
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def ban (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await member.send(f'{member.name}, тебя забанил {ctx.author.name}')
     await ctx.channel.purge(limit = 1)
     emb = discord.Embed(title="Участник забанен.",description=f"Участник {member} был забанен {ctx.author}",colour=discord.Color.dark_red())
     await member.ban(reason = reason)
@@ -93,6 +94,28 @@ async def unban (ctx, *, member): # Создаём функцию в коман�
         await ctx.guild.unban( user )
         emb = discord.Embed(title="Участник кикнут.", description=f"Участник {member} был кикнут {ctx.author}",colour=discord.Color.green())
         await ctx.send(emb)
+
+@client.command(pass_context=True)  # Создаём команду
+@commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
+async def user_mute(ctx, member: discord.Member):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await ctx.channel.purge(limit=1)
+
+    mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute')
+
+    await member.add_roles( mute_role )
+    await ctx.send( f'держи язык за зубами!{member.mention}')
+
+@client.command(pass_context=True)  # Создаём команду
+@commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
+async def send_a(ctx):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await ctx.author.send()
+
+@client.command(pass_context=True)  # Создаём команду
+@commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
+async def send_m(ctx, member: discord.member):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+    await member.send(f'{member.name}, привет от {ctx.author.name}')
+
+
 
         return
 
