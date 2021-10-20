@@ -64,7 +64,7 @@ async def spam(ctx,skolko,bukvi):
     for mogus in range(int(skolko)):
         await ctx.send(bukvi)
 
-client.run(token) # Вставляем токен в кавычки
+
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def kick(ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
@@ -82,7 +82,7 @@ async def ban(ctx, member: discord.Member, *, reason = None): # Создаём �
     await member.ban(reason = reason)
     await ctx.send(emb)
 
-client.run(token) # Вставляем токен в кавычки
+
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def unban(ctx, *, member): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
