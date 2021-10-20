@@ -54,7 +54,6 @@ async def magicball(ctx): # Суть - отправляем рандомную �
         await ctx.send(embed=emb)
     print(f"[{time}] 8ball command used {ctx.author} with answer {choice}")
 
-client.run("ODkwMjM1NDQyNjYwNzk4NDk1.YUs2XQ.X3YvG6IeNhhogjI8CHH50gnMmag") # Вставляем токен бота (Уже нужный стоит)
 
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
@@ -70,18 +69,17 @@ client.run(token) # Вставляем токен в кавычки
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def kick (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge(limit = 1)
-
     await member.kick(reason = reason)
-    await ctx.send( f'кикнут{member.mention}' )
+    emb = discord.Embed(title="Участник кикнут.",description=f"Участник {member} был кикнут {ctx.author}",colour=discord.Color.dark_red())
+    await ctx.send(emb)
 
-client.run(token) # Вставляем токен в кавычки
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def ban (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge(limit = 1)
-
+    emb = discord.Embed(title="Участник забанен.",description=f"Участник {member} был забанен {ctx.author}",colour=discord.Color.dark_red())
     await member.ban(reason = reason)
-    await ctx.send( f'забанен{member.mention}' )
+    await ctx.send(emb)
 
 client.run(token) # Вставляем токен в кавычки
 @client.command(pass_context = True) # Создаём команду
@@ -92,12 +90,12 @@ async def unban (ctx, *, member): # Создаём функцию в коман�
     banned_users = await ctx.guild.bans()
     for ban_entry in banned_users:
         user = ban_entry.user
-
         await ctx.guild.unban( user )
-        await ctx.send( f'разбанен{ user.mention }')
+        emb = discord.Embed(title="Участник кикнут.", description=f"Участник {member} был кикнут {ctx.author}",colour=discord.Color.green())
+        await ctx.send(emb)
 
         return
 
-client.run("") # Вставляем токен в кавычки
+client.run("token") # Вставляем токен в кавычки
 
 #это я, ира. так же полезна как физ чича
