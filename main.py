@@ -67,7 +67,7 @@ async def spam(ctx,skolko,bukvi):
 client.run(token) # Вставляем токен в кавычки
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
-async def kick (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+async def kick(ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge(limit = 1)
     await member.kick(reason = reason)
     emb = discord.Embed(title="Участник кикнут.",description=f"Участник {member} был кикнут {ctx.author}",colour=discord.Color.dark_red())
@@ -75,7 +75,7 @@ async def kick (ctx, member: discord.Member, *, reason = None): # Создаём
 
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
-async def ban (ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+async def ban(ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await member.send(f'{member.name}, тебя забанил {ctx.author.name}')
     await ctx.channel.purge(limit = 1)
     emb = discord.Embed(title="Участник забанен.",description=f"Участник {member} был забанен {ctx.author}",colour=discord.Color.dark_red())
@@ -85,7 +85,7 @@ async def ban (ctx, member: discord.Member, *, reason = None): # Создаём 
 client.run(token) # Вставляем токен в кавычки
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
-async def unban (ctx, *, member): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+async def unban(ctx, *, member): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge(limit = 1)
 
     banned_users = await ctx.guild.bans()
