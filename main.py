@@ -118,15 +118,15 @@ async def send_a(ctx):  # Создаём функцию в команде, в с
 async def send_m(ctx, member: discord.member):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await member.send(f'{member.name}, привет от {ctx.author.name}')
 
-    @client.event
-    async def on_mess( message )
-        await client.process_commands( message )
+@client.event
+async def on_mess( message ):
+    await client.process_commands( message )
 
-        msg = message.content.lower()
+    msg = message.content.lower()
 
-        if msg in bad_words:
-            await message.delete()
-            await message.author.send(f'{message.author.name}, акурратнее с выражениями')
+    if msg in bad_words:
+        await message.delete()
+        await message.author.send(f'{message.author.name}, акурратнее с выражениями')
     return
 
 client.run(f"{token}") # Вставляем токен в кавычки
