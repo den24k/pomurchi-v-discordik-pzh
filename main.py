@@ -60,8 +60,10 @@ async def magicball(ctx): # Суть - отправляем рандомную �
 async def clear( ctx, amount = 100): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge( limit = amount)
 @client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
 async def spam(ctx,skolko,bukvi):
     for mogus in range(int(skolko)):
+        await ctx.channel.purge(limit=1)
         await ctx.send(bukvi)
 
 
