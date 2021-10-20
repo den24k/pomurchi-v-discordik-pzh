@@ -114,10 +114,7 @@ async def send_a(ctx):  # Создаём функцию в команде, в с
 @commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
 async def send_m(ctx, member: discord.member):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await member.send(f'{member.name}, привет от {ctx.author.name}')
-
-
-
-        return
+    return
 
 client.run("token") # Вставляем токен в кавычки
 
