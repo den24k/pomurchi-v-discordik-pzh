@@ -69,9 +69,10 @@ async def spam(ctx,skolko,bukvi):
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def kick(ctx, member: discord.Member, *, reason = None): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge(limit = 1)
+    await member.send(f'{member.name}, тебя кикнул {ctx.author.name}')
     await member.kick(reason = reason)
     emb = discord.Embed(title="Участник кикнут.",description=f"Участник {member} был кикнут {ctx.author}",colour=discord.Color.dark_red())
-    await ctx.send(emb)
+    await ctx.send(embed=emb)
 
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
@@ -80,20 +81,19 @@ async def ban(ctx, member: discord.Member, *, reason = None): # Создаём �
     await ctx.channel.purge(limit = 1)
     emb = discord.Embed(title="Участник забанен.",description=f"Участник {member} был забанен {ctx.author}",colour=discord.Color.dark_red())
     await member.ban(reason = reason)
-    await ctx.send(emb)
+    await ctx.send(embed=emb)
 
 
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def unban(ctx, *, member): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge(limit = 1)
-
     banned_users = await ctx.guild.bans()
     for ban_entry in banned_users:
         user = ban_entry.user
         await ctx.guild.unban( user )
-        emb = discord.Embed(title="Участник кикнут.", description=f"Участник {member} был кикнут {ctx.author}",colour=discord.Color.green())
-        await ctx.send(emb)
+    emb = discord.Embed(title="Участник разбанен.", description=f"Участник {member} был разбанен {ctx.author}",colour=discord.Color.green())
+    await ctx.send(embed=emb)
 
 @client.command(pass_context=True)  # Создаём команду
 @commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
