@@ -3,6 +3,7 @@ import random
 import datetime
 from discord.ext import commands
 from mytalkingtoken import token
+from discord.utils import get
 bad_words = [' сука, блять, ебаный, ебать, мразь, дебил ']
 
 # Импортируем
@@ -127,7 +128,30 @@ async def on_mess( message ):
     if msg in bad_words:
         await message.delete()
         await message.author.send(f'{message.author.name}, акурратнее с выражениями')
+
+@client.command()
+async def join(ctx):
+    global voice
+    channel = ctx.message.author.voice.channel
+    voice = get(client.voice_clients, guild = ctx.guild)
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+    else:
+        voice = await channel.connect()
+        await ctx.send(f'бот в канале {channel}')
+
+@client.command()
+async def leave(ctx):
+    channel = ctx.message.author.voice.channel
+    voice = get(client.voice_clients, guild=ctx.guild)
+    if voice and voice.is_connected():
+        await voice.disconnect()
+    else:
+        voice = await channel.connect()
+        await ctx.send(f'бот вышел из канала {channel}')
     return
+
+
 
 client.run(f"{token}") # Вставляем токен в кавычки
 
