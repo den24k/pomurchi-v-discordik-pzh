@@ -3,7 +3,7 @@ import random
 import datetime
 from discord.ext import commands
 from mytalkingtoken import token
-bad_words = ['']
+bad_words = [' сука, блять, ебаный, ебать, мразь, дебил ']
 
 # Импортируем
 
