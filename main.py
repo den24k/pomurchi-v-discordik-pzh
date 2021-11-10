@@ -159,7 +159,7 @@ async def leave(ctx):
 
 
 @client.command(pass_context=True)
-async def chnick(ctx, member: discord.Member, nick):
+async def nick(ctx, member: discord.Member, nick):
     await member.edit(nick=nick)
     await ctx.send(f'Ник был изменен для {member.mention} ')
 
