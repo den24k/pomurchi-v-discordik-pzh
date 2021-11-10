@@ -102,7 +102,7 @@ async def unban(ctx, *, member): # Создаём функцию в команд
 @client.command(pass_context=True)  # Создаём команду
 @commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
 async def user_mute(ctx, member: discord.Member):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
-    await ctx.channel.purge(limit=1)
+    await ctx.channel.purge(limit=20)
 
     mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute')
 
