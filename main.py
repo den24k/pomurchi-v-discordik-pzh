@@ -153,6 +153,16 @@ async def leave(ctx):
 
 
 
+
+@client.command(pass_context = True)
+@commands.has_permissions(administrator = True)
+
+
+@client.command(pass_context=True)
+async def chnick(ctx, member: discord.Member, nick):
+    await member.edit(nick=nick)
+    await ctx.send(f'Ник был изменен для {member.mention} ')
+
+
 client.run(f"{token}") # Вставляем токен в кавычки
 
-#это я, ира. так же полезна как физ чича
