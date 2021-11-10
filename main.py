@@ -129,6 +129,14 @@ async def on_mess( message ):
         await message.delete()
         await message.author.send(f'{message.author.name}, акурратнее с выражениями')
 
+@bot.command(name="role")
+async def role(ctx, role: discord.Role):
+    if role in ctx.author.roles:
+        await ctx.author.remove_roles(role)
+    else:
+        await ctx.author.add_roles(role)
+        #смена ролей
+
 @client.command()
 async def join(ctx):
     global voice
@@ -157,11 +165,6 @@ async def leave(ctx):
 @client.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 
-
-@client.command(pass_context=True)
-async def nick(ctx, member: discord.Member, nick):
-    await member.edit(nick=nick)
-    await ctx.send(f'Ник был изменен для {member.mention} ')
 
 
 client.run(f"{token}") # Вставляем токен в кавычки
