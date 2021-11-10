@@ -143,7 +143,7 @@ async def join(ctx):
         await voice.move_to(channel)
     else:
         voice = await channel.connect()
-        await ctx.send(f'бот в канавы {channel}')
+        await ctx.send(f'бот в канаве {channel}')
 
 
 @client.command(pass_context=True)
