@@ -129,7 +129,8 @@ async def on_mess( message ):
         await message.delete()
         await message.author.send(f'{message.author.name}, акурратнее с выражениями')
 
-@bot.command(name="role")
+@client.command(name="role")
+@commands.has_permissions(administrator=True)
 async def role(ctx, role: discord.Role):
     if role in ctx.author.roles:
         await ctx.author.remove_roles(role)
@@ -147,6 +148,10 @@ async def join(ctx):
     else:
         voice = await channel.connect()
         await ctx.send(f'бот в канале {channel}')
+@client.command(pass_context=True)
+async def nick(ctx, member: discord.Member, nick):
+    await member.edit(nick=nick)
+    await ctx.send(f'Ник был изменен для {member.mention} ')
 
 @client.command()
 async def leave(ctx):
@@ -159,11 +164,6 @@ async def leave(ctx):
         await ctx.send(f'бот вышел из канала {channel}')
     return
 
-
-
-
-@client.command(pass_context = True)
-@commands.has_permissions(administrator = True)
 
 
 
