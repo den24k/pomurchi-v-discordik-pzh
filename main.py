@@ -136,7 +136,7 @@ async def role(ctx, role: discord.Role):
         await ctx.author.remove_roles(role)
     else:
         await ctx.author.add_roles(role)
-        #смена ролей
+        #смена ролей от Иры, отредактированно
 
 @client.command()
 async def join(ctx):
