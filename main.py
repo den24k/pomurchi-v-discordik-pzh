@@ -61,6 +61,8 @@ async def magicball(ctx): # Суть - отправляем рандомную �
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def clear( ctx, amount = 100): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge( limit = amount)
+
+
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
 async def spam(ctx,skolko,bukvi):
@@ -108,10 +110,6 @@ async def user_mute(ctx, member: discord.Member):  # Создаём функци
     await member.add_roles( mute_role )
     await ctx.send( f'держи язык за зубами!{member.mention}')
 
-@client.command(pass_context=True)  # Создаём команду
-@commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
-async def send_a(ctx):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
-    await ctx.author.send()
 
 @client.command(pass_context=True)  # Создаём команду
 @commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
@@ -142,11 +140,15 @@ async def join(ctx):
     global voice
     channel = ctx.message.author.voice.channel
     voice = get(client.voice_clients, guild = ctx.guild)
+
+
     if voice and voice.is_connected():
         await voice.move_to(channel)
     else:
         voice = await channel.connect()
         await ctx.send(f'бот в канале {channel}')
+
+
 @client.command(pass_context=True)
 async def nick(ctx, member: discord.Member, nick):
     await member.edit(nick=nick)
@@ -156,6 +158,8 @@ async def nick(ctx, member: discord.Member, nick):
 async def leave(ctx):
     channel = ctx.message.author.voice.channel
     voice = get(client.voice_clients, guild=ctx.guild)
+
+
     if voice and voice.is_connected():
         await voice.disconnect()
     else:
