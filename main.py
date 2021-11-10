@@ -21,7 +21,7 @@ helpdata = "помогите" #open("help.txt",mode='r').read() # В файл з
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def help(ctx): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     time = datetime.datetime.now().time() # Время для логов
-    emb = discord.Embed(title='Здравствуйте, я MfBot! Я сейчас нахожусь в разработке поэтому данный перечень команд может быть неполным.',description=helpdata,color=discord.Color.green())
+    emb = discord.Embed(title='Здравствуйте, я bot slitiy!',description=helpdata,color=discord.Color.green())
     # Про эмбеды посмотрите видеоролик на канале Фсоки
     await ctx.send(embed=emb) # Отправляем эмбед
     print(f"[{time}] help command used") # Сообщение в лог
@@ -59,7 +59,7 @@ async def magicball(ctx): # Суть - отправляем рандомную �
 
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
-async def clear( ctx, amount = 100): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
+async def clear( ctx, amount = 999999): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
     await ctx.channel.purge( limit = amount)
 
 
@@ -67,7 +67,7 @@ async def clear( ctx, amount = 100): # Создаём функцию в кома
 @commands.has_permissions(administrator=True)
 async def spam(ctx,skolko,bukvi):
     for mogus in range(int(skolko)):
-        await ctx.channel.purge(limit=1)
+        await ctx.channel.purge(limit=0)
         await ctx.send(bukvi)
 
 
@@ -93,7 +93,6 @@ async def ban(ctx, member: discord.Member, *, reason = None): # Создаём �
 @client.command(pass_context = True) # Создаём команду
 @commands.has_permissions(administrator = True) # Пишем какие права нужны для использования команды
 async def unban(ctx, *, member): # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
-    await ctx.channel.purge(limit = 1)
     banned_users = await ctx.guild.bans()
     for ban_entry in banned_users:
         user = ban_entry.user
@@ -104,9 +103,7 @@ async def unban(ctx, *, member): # Создаём функцию в команд
 @client.command(pass_context=True)  # Создаём команду
 @commands.has_permissions(administrator=True)  # Пишем какие права нужны для использования команды
 async def user_mute(ctx, member: discord.Member):  # Создаём функцию в команде, в скобочках аргументы (то слова/цифры после названия команды)
-
     mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute')
-
     await member.add_roles( mute_role )
     await ctx.send( f'держи язык за зубами!{member.mention}')
 
@@ -163,7 +160,6 @@ async def leave(ctx):
     if voice and voice.is_connected():
         await voice.disconnect()
     else:
-        voice = await channel.connect()
         await ctx.send(f'бот вышел из канала {channel}')
     return
 
