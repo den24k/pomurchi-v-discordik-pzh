@@ -2,6 +2,7 @@ import discord
 import random
 import datetime
 from discord.ext import commands
+from discord.ext.commands import bot
 from mytalkingtoken import token
 from discord.utils import get
 bad_words = [' сука, блять, ебаный, ебать, мразь, дебил ']
@@ -162,9 +163,59 @@ async def leave(ctx):
     else:
         voice = await channel.connect()
         await ctx.send(f'бот вышел из канавы {channel}')
+
+
+players = {}
+queues = {}
+
+
+def check_queue(id):
+    if queues[id] != []:
+        player = queues[id].pop(0)
+        players[id] = player
+        player.start()
+
+
+@client.command(pass_context=True)
+async def play(ctx, url):
+    server = ctx.message.server
+    voice_client = bot.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url, after=lambda: check_queue(server.id))
+    players[server.id] = player
+    player.start()
+
+
+@client.command(pass_context=True)
+async def queue(ctx, url):
+    server = ctx.message.server
+    voice_client = bot.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url, after=lambda: check_queue(server.id))
+
+    if server.id in queues:
+        queues[server.id].append(player)
+    else:
+        queues[server.id] = [player]
+    await bot.say('Video queued.')
+
+
+@client.command(pass_context=True)
+async def pause(ctx):
+    id = ctx.message.server.id
+    players[id].pause()
+
+
+@client.command(pass_context=True)
+async def stop(ctx):
+    id = ctx.message.server.id
+    players[id].stop()
+
+
+@client.command(pass_context=True)
+async def resume(ctx):
+    id = ctx.message.server.id
+    players[id].resume()
+
     return
-
-
 
 
 client.run(f"{token}") # Вставляем токен в кавычки
