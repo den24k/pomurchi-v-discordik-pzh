@@ -217,6 +217,14 @@ async def resume(ctx):
 
     return
 
+@bot.command()
+async def rolepls(ctx):
+    author = ctx.message.author
+    guild = bot.get_guild(id = 956167527606673508)
+    role = guild.get_role(961261130360176701)
+
+    await author.add_roles(role)
+
 
 client.run(f"{token}") # Вставляем токен в кавычки
 
